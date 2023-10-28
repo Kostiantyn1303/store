@@ -6,25 +6,7 @@ export const ProductsContainer = styled.div`
   margin-bottom: 32px;
   margin-top: 32px;
 `;
-export const ProductsList = styled.ul`
-  display: flex;
-  justify-content: center;
-  row-gap: 20px;
-  margin: 0 auto;
-  flex-direction: column;
-  flex: auto;
-  @media screen and (min-width: 768px) {
-    flex-wrap: wrap;
 
-    row-gap: 32px;
-    column-gap: 32px;
-    flex-direction: row;
-  }
-
-  @media screen and (min-width: 1280px) {
-    column-gap: 16px;
-  }
-`;
 export const ProductsItems = styled.li`
   display: flex;
   flex-direction: column;
@@ -92,7 +74,7 @@ export const ButtonOrder = styled.button`
 `;
 export const Images = styled.img`
   width: 100%;
-  height: 270px;
+  height: 260px;
   border-radius: 4px;
 `;
 export const PriceText = styled.p`

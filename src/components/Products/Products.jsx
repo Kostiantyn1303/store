@@ -1,9 +1,10 @@
 import React from "react";
 import sprite from "../../images/sprite.svg";
-import Data from "../Date.json";
+import MyModal from "../Modal/Modal-Window";
+import { useState } from "react";
+
 import {
   ProductsContainer,
-  ProductsList,
   ProductsItems,
   SVG,
   ButtonContainer,
@@ -13,34 +14,38 @@ import {
   PriceText,
   ButtonDetails,
 } from "./Products.styled";
-function Products() {
-  const Info = Data;
-  console.log(Info);
+const Products = ({ product }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <ProductsContainer>
-      <ProductsList>
-        {Info?.map((item) => (
-          <ProductsItems key={item.name}>
+      <ProductsItems key={product.name}>
+        {" "}
+        <Images src={product.image} alt="" />{" "}
+        <ButtonDetails type={"button"} onClick={() => setIsModalOpen(true)}>
+          Деталі
+        </ButtonDetails>
+        <p>{product.name}</p>
+        <PriceText>{product.price} </PriceText>{" "}
+        <ButtonContainer>
+          {" "}
+          <ButtonOrder>Замовити</ButtonOrder>{" "}
+          <ProductsBtnIcon title="Додати в корзину">
             {" "}
-            <Images src={item.image} alt="" />{" "}
-            <ButtonDetails>Деталі</ButtonDetails>
-            <p>{item.name}</p>
-            <PriceText>{item.price} </PriceText>{" "}
-            <ButtonContainer>
-              {" "}
-              <ButtonOrder>Замовити</ButtonOrder>{" "}
-              <ProductsBtnIcon title="Додати в корзину">
-                {" "}
-                <SVG>
-                  <use href={sprite + "#icon-cart"} />
-                </SVG>
-              </ProductsBtnIcon>{" "}
-            </ButtonContainer>
-          </ProductsItems>
-        ))}
-      </ProductsList>
+            <SVG>
+              <use href={sprite + "#icon-cart"} />
+            </SVG>
+          </ProductsBtnIcon>{" "}
+        </ButtonContainer>
+      </ProductsItems>
+
+      <MyModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        product={product}
+      />
     </ProductsContainer>
   );
-}
+};
 
 export default Products;

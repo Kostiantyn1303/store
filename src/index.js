@@ -2,23 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { scrollSpy, scroller } from "react-scroll";
+
 import { BrowserRouter } from "react-router-dom";
-const containerId = "root";
+import { Provider } from "react-redux";
+import store from "./components/redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById(containerId)
+  </React.StrictMode>
 );
-scrollSpy.update();
-scroller.scrollTo(containerId, {
-  duration: 1500,
-  delay: 100,
-  smooth: true,
-  offset: -50,
-});
